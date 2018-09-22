@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "90061576741",
+    "firebase_url": "https://takeaway-ao.firebaseio.com",
+    "project_id": "takeaway-ao",
+    "storage_bucket": "takeaway-ao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90061576741:android:314c583ec29be1ea",
+        "android_client_info": {
+          "package_name": "io.github.manuelernesto.takeaway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90061576741-f3hc6cfsnoer638lec0ksfa99g5dcc0q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.manuelernesto.takeaway",
+            "certificate_hash": "2589e179f338e0a281fe77b71b396940105bed2a"
+          }
+        },
+        {
+          "client_id": "90061576741-2vo9iak3m92fnhu3ca5o407bubl9nnaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_YJbflHPmBpFswv1JBmy36VZhK5pXAi8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90061576741-2vo9iak3m92fnhu3ca5o407bubl9nnaq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
