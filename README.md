@@ -1,7 +1,7 @@
 # Takeaway Kotlin
 
 
-![alt text](http://softwares4mais.com/static/takeaway/takeaway.mp4)
+![alt text](take.gif)
 
 This an android app for an restaurant a have called #Takeaway
 developed with the kotlin language.
