@@ -8,12 +8,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:src="@mipmap/bg_home" />-->
-
     <include
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"

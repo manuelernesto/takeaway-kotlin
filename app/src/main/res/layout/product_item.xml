@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="0dp"
+        android:layout_height="275dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/bg_home" />
+
+    <TextView
+        android:id="@+id/txtNameProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#90000000"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txtPriceProduct"
+        app:layout_constraintEnd_toEndOf="@+id/imgProduct"
+        app:layout_constraintStart_toStartOf="@+id/imgProduct"
+        tools:text="PIZZA 01" />
+
+    <TextView
+        android:id="@+id/txtPriceProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#90000000"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDiscountProduct"
+        app:layout_constraintEnd_toStartOf="@+id/txtDiscountProduct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtDiscountProduct"
+        tools:text="Price: $100 " />
+
+    <TextView
+        android:id="@+id/txtDiscountProduct"
+        android:layout_width="201dp"
+        android:layout_height="wrap_content"
+        android:background="#90000000"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Discount: $0" />
+
+</android.support.constraint.ConstraintLayout>

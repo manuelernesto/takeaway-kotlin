@@ -1,6 +1,7 @@
-package io.github.manuelernesto.takeaway
+package io.github.manuelernesto.takeaway.Controller
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
@@ -8,13 +9,20 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.database.*
-import io.github.manuelernesto.takeaway.Holder.MenuViewAdapter
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
+import io.github.manuelernesto.takeaway.Adapter.MenuViewHolder
+import io.github.manuelernesto.takeaway.Interface.ItemClickListener
 import io.github.manuelernesto.takeaway.Model.Category
+import io.github.manuelernesto.takeaway.R
+import io.github.manuelernesto.takeaway.Util.CATEGORY_EXTRA
 import io.github.manuelernesto.takeaway.Utils.Common
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -26,8 +34,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var database: FirebaseDatabase
     lateinit var category: DatabaseReference
-    lateinit var adapter: MenuViewAdapter
-    var categories: MutableList<Category> = mutableListOf()
+    lateinit var viewHolder: FirebaseRecyclerAdapter<Category, MenuViewHolder>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +47,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //firebase init
         database = FirebaseDatabase.getInstance()
-        category = database.getReference("category")
-
-
-
+        category = database.getReference(CATEGORY_EXTRA)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -65,38 +70,47 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val manager = LinearLayoutManager(this)
         recyclerview.layoutManager = manager
         recyclerview.setHasFixedSize(true)
-        loadMenu()
+        loadMenuItens()
 
     }
 
-    fun loadMenu() {
-        val valueEventListener = object : ValueEventListener {
-            override fun onCancelled(databaseError: DatabaseError) {
+    fun loadMenuItens() {
+        val categoryQuery = category.orderByKey()
+        val categoryOption = FirebaseRecyclerOptions.Builder<Category>()
+                .setQuery(categoryQuery, Category::class.java).build()
 
+        viewHolder = object : FirebaseRecyclerAdapter<Category, MenuViewHolder>(categoryOption) {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
+                val view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.menu_item, parent, false)
+
+                val name = view.findViewById<TextView>(R.id.categoryName)
+                val img = view.findViewById<ImageView>(R.id.categoryImage)
+                return MenuViewHolder(view, img, name)
             }
 
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+            override fun onBindViewHolder(holder: MenuViewHolder, position: Int, model: Category) {
+                holder.categoryName.text = model.name
 
-                for (i in 1..5) {
-                    val category: Category? = dataSnapshot.child("0$i").getValue(Category::class.java)
-                    if (category != null) {
-                        categories.add(category)
+                Picasso.get()
+                        .load(model.image)
+                        .placeholder(R.mipmap.bg_home)
+                        .error(R.mipmap.bg_home)
+                        .into(holder.categoryImg)
+
+                val itemClickListener = object : ItemClickListener {
+                    override fun onClick(view: View, position: Int, isLongClick: Boolean) {
+                        val intent = Intent(this@HomeActivity, ProductListActivity::class.java)
+                        intent.putExtra(CATEGORY_EXTRA, viewHolder.getRef(position).key)
+                        startActivity(intent)
                     }
                 }
-
-                adapter = MenuViewAdapter(this@HomeActivity, categories) {category ->
-                    "${category.name}".toast(this@HomeActivity)
-                }
-
-                recyclerview.adapter = adapter
-
+                holder.setitemClickListener(itemClickListener)
             }
-
         }
-
-        category.addValueEventListener(valueEventListener)
-
+        recyclerview.adapter = viewHolder
     }
+
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -144,10 +158,19 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewHolder.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewHolder.stopListening()
+    }
+
     fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT): Toast {
         return Toast.makeText(context, this.toString(), duration).apply { show() }
     }
-
 
 
 }

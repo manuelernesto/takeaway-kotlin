@@ -1,4 +1,4 @@
-package io.github.manuelernesto.takeaway
+package io.github.manuelernesto.takeaway.Controller
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.database.*
 import io.github.manuelernesto.takeaway.Model.User
+import io.github.manuelernesto.takeaway.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {

@@ -13,19 +13,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".Controller.SignInActivity" />
+        <activity android:name=".Controller.SignUpActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Controller.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:label="@string/title_activity_product"
+            android:theme="@style/Theme"
+            android:name=".Controller.ProductListActivity" />
     </application>
 
 </manifest>

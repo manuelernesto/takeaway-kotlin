@@ -1,8 +1,9 @@
-package io.github.manuelernesto.takeaway
+package io.github.manuelernesto.takeaway.Controller
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import io.github.manuelernesto.takeaway.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
