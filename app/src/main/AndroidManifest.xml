@@ -27,9 +27,11 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".Controller.ProductListActivity"
             android:label="@string/title_activity_product"
-            android:theme="@style/Theme"
-            android:name=".Controller.ProductListActivity" />
+            android:theme="@style/Theme" />
+
+        <activity android:name=".Controller.ProductDetailActivity"/>
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@ import io.github.manuelernesto.takeaway.Adapter.MenuViewHolder
 import io.github.manuelernesto.takeaway.Interface.ItemClickListener
 import io.github.manuelernesto.takeaway.Model.Category
 import io.github.manuelernesto.takeaway.R
-import io.github.manuelernesto.takeaway.Util.CATEGORY_EXTRA
+import io.github.manuelernesto.takeaway.Utils.CATEGORY_EXTRA
 import io.github.manuelernesto.takeaway.Utils.Common
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -30,12 +30,12 @@ import kotlinx.android.synthetic.main.content_home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 
+
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var database: FirebaseDatabase
     lateinit var category: DatabaseReference
     lateinit var viewHolder: FirebaseRecyclerAdapter<Category, MenuViewHolder>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +70,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val manager = LinearLayoutManager(this)
         recyclerview.layoutManager = manager
         recyclerview.setHasFixedSize(true)
-        loadMenuItens()
+        loadMenuItems()
 
     }
 
-    fun loadMenuItens() {
+    private fun loadMenuItems() {
         val categoryQuery = category.orderByKey()
         val categoryOption = FirebaseRecyclerOptions.Builder<Category>()
                 .setQuery(categoryQuery, Category::class.java).build()
@@ -110,7 +110,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         recyclerview.adapter = viewHolder
     }
-
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {

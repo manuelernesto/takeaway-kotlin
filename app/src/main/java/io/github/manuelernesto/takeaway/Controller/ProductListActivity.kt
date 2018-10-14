@@ -1,6 +1,8 @@
 package io.github.manuelernesto.takeaway.Controller
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -19,8 +21,8 @@ import io.github.manuelernesto.takeaway.Adapter.ProductViewHolder
 import io.github.manuelernesto.takeaway.Interface.ItemClickListener
 import io.github.manuelernesto.takeaway.Model.Product
 import io.github.manuelernesto.takeaway.R
-import io.github.manuelernesto.takeaway.Util.CATEGORY_EXTRA
-import io.github.manuelernesto.takeaway.Util.PRODUCT_EXTRA
+import io.github.manuelernesto.takeaway.Utils.CATEGORY_EXTRA
+import io.github.manuelernesto.takeaway.Utils.PRODUCT_EXTRA
 import kotlinx.android.synthetic.main.activity_food_list.*
 
 class ProductListActivity : AppCompatActivity() {
@@ -45,10 +47,10 @@ class ProductListActivity : AppCompatActivity() {
         val manager = LinearLayoutManager(this)
         recyclerviewFoodList.layoutManager = manager
         recyclerviewFoodList.setHasFixedSize(true)
-        loadMenuItens(categoryId)
+        loadMenuItems(categoryId)
     }
 
-    fun loadMenuItens(categoryId: String) {
+    private fun loadMenuItems(categoryId: String) {
         val productQuery = product.orderByChild("menuId").equalTo(categoryId)
 
         val productOption = FirebaseRecyclerOptions.Builder<Product>()
@@ -67,10 +69,11 @@ class ProductListActivity : AppCompatActivity() {
                 return ProductViewHolder(view, img, name, price, discount)
             }
 
+            @SuppressLint("SetTextI18n")
             override fun onBindViewHolder(holder: ProductViewHolder, position: Int, model: Product) {
                 holder.productName.text = model.name
-                holder.productPrice.text = model.price
-                holder.productDiscount.text = model.discount
+                holder.productPrice.text = "Price: $${model.price}"
+                holder.productDiscount.text = "Discount: $${model.discount}"
 
 
                 Picasso.get()
@@ -81,7 +84,9 @@ class ProductListActivity : AppCompatActivity() {
 
                 val itemClickListener = object : ItemClickListener {
                     override fun onClick(view: View, position: Int, isLongClick: Boolean) {
-                        "${model.name}".toast(this@ProductListActivity)
+                        val intent = Intent(this@ProductListActivity, ProductDetailActivity::class.java)
+                        intent.putExtra(PRODUCT_EXTRA, viewHolder.getRef(position).key)
+                        startActivity(intent)
                     }
                 }
                 holder.setitemClickListener(itemClickListener)
@@ -93,7 +98,6 @@ class ProductListActivity : AppCompatActivity() {
     fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT): Toast {
         return Toast.makeText(context, this.toString(), duration).apply { show() }
     }
-
 
     override fun onStart() {
         super.onStart()
