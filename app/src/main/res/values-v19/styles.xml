@@ -27,4 +27,9 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="Theme_Dialog" parent="android:Theme.Holo.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
 </resources>

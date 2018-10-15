@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         database = FirebaseDatabase.getInstance()
         category = database.getReference(CATEGORY_EXTRA)
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }

@@ -44,5 +44,4 @@ class CartAdapter(private val context: Context, private val orders: List<Order>)
         holder.cartProductName.text = orders[position].productName
     }
 
-
 }
