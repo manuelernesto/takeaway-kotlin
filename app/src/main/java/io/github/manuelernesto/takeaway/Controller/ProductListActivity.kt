@@ -62,7 +62,7 @@ class ProductListActivity : AppCompatActivity() {
                         .inflate(R.layout.product_item, parent, false)
 
                 val name = view.findViewById<TextView>(R.id.txtNameProduct)
-                val price = view.findViewById<TextView>(R.id.txtPriceProduct)
+                val price = view.findViewById<TextView>(R.id.txtPriceProductCart)
                 val discount = view.findViewById<TextView>(R.id.txtDiscountProduct)
                 val img = view.findViewById<ImageView>(R.id.imgProduct)
 

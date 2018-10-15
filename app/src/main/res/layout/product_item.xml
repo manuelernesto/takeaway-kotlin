@@ -29,13 +29,13 @@
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtPriceProduct"
+        app:layout_constraintBottom_toTopOf="@+id/txtPriceProductCart"
         app:layout_constraintEnd_toEndOf="@+id/imgProduct"
         app:layout_constraintStart_toStartOf="@+id/imgProduct"
         tools:text="PIZZA 01" />
 
     <TextView
-        android:id="@+id/txtPriceProduct"
+        android:id="@+id/txtPriceProductCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#90000000"
