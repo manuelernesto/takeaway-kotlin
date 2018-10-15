@@ -13,5 +13,10 @@ if you want to contribute, please fill free.
 - [X] Signin and Signup with Firebase
 - [X] Load all category from Firebase
 - [X] Load the product based on some category 
-- [ ] Add product to cart
-- [ ] Submit order
+- [X] Add product to cart
+- [X] Submit order
+- [ ] Search Products
+- [ ] Rating Products
+- [ ] Add Favorites
+- [ ] Shipping direction
+- [ ] Password Recovery
