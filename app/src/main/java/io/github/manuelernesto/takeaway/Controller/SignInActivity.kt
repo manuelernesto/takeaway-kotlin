@@ -18,9 +18,9 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val userTable: DatabaseReference = database.getReference("User")
+
         progressBar.visibility = View.INVISIBLE
 
         btn_signIn.setOnClickListener {
@@ -41,7 +41,7 @@ class SignInActivity : AppCompatActivity() {
 
 
                         val user: User? = dataSnapshot.child(et_phone_number.text.toString()).getValue(User::class.java)
-
+                        user?.phone = et_phone_number.text.toString()
                         if (user != null) {
 
                             if (user.password == et_password.text.toString()) {

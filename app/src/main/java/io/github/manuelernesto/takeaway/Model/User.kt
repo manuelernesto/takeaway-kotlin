@@ -2,13 +2,13 @@ package io.github.manuelernesto.takeaway.Model
 
 class User() {
 
-    var name: String? = null
-    var password: String? = null
+    lateinit var name: String
+    lateinit var password: String
+    lateinit var phone: String
 
-    constructor(name: String, password: String) : this() {
+    constructor(name: String, password: String, phone: String) : this() {
         this.name = name
         this.password = password
+        this.phone = phone
     }
-
-
 }
